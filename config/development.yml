@@ -1,0 +1,9 @@
+wx:
+  appid: appid
+  secret: secret
+  server_token: server_token
+
+
+  partner_key: partner_key
+  mch_id: '123456789'
+  notify_url: http://domain.com/api/v1/pay/notify/

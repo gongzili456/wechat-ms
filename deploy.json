@@ -1,0 +1,30 @@
+{
+  "apps": [
+    {
+      "name": "wechat-ms",
+      "script": "index.js",
+      "env": {
+        "COMMON_VARIABLE": "true"
+      },
+      "env_production": {
+        "NODE_ENV": "production"
+      }
+    }
+  ],
+  "deploy": {
+    "production": {
+      "user": "user",
+      "host": "ip address",
+      "ref": "origin/master",
+      "repo": "git repo",
+      "path": "/srv/path",
+      "post-deploy":
+        "npm install && pm2 startOrRestart deploy.json --env production --node-args='--harmony' && pm2 save",
+      "pre-deploy-local": "echo 'Start deploy now.'",
+      "env": {
+        "NODE_ENV": "production",
+        "PORT": 5555
+      }
+    }
+  }
+}
