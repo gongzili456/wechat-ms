@@ -29,7 +29,7 @@ export default function api(options) {
       'role:web',
       {
         routes: {
-          prefix: '/wxserver', // 这个 path 就是路由
+          prefix: '/wxserver', // 这个 path 就是路由前缀
           pin: 'role:api,path:*',
           map: {
             wxevent: {
@@ -45,6 +45,7 @@ export default function api(options) {
 
   /**
    * 微信请求分发
+   * http://example.com/wxserver/wxevent
    */
   this.add('role:api,path:wxevent', function door(msg, respond) {
     const method = msg.request$.method
@@ -79,7 +80,7 @@ export default function api(options) {
     const signature = getSignature(
       query.timestamp,
       query.nonce,
-      config.server_token,
+      config.wx.server_token,
     )
 
     if (signature !== query.signature) {
